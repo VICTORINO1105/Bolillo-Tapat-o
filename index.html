@@ -285,15 +285,16 @@
         }
 
         .imagen-contenedor::after {
-            content: '🔍 Clic para ampliar';
+            content: '🔍 Clic para ver fotos';
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(0,0,0,0.6);
+            background: rgba(166, 44, 44, 0.85);
             color: #fff;
-            font-size: 0.8rem;
-            padding: 4px 0;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 0;
             opacity: 0;
             transition: var(--transicion);
         }
@@ -316,6 +317,125 @@
             font-size: 0.95rem;
             color: #666;
             margin-bottom: 0;
+        }
+
+        /* ================= MODAL CUADRÍCULA DE IMÁGENES ================= */
+        .modal-menu-overlay {
+            display: none;
+            position: fixed;
+            z-index: 1800;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-menu-overlay.active {
+            display: flex;
+        }
+
+        .modal-menu-card {
+            background: var(--color-blanco);
+            width: 100%;
+            max-width: 650px;
+            max-height: 85vh;
+            overflow-y: auto;
+            border-radius: 20px;
+            padding: 1.8rem;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        .modal-menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--color-fondo);
+        }
+
+        .modal-menu-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .modal-menu-brand img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--color-rojo);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .modal-menu-brand div h4 {
+            font-family: 'Pacifico', cursive;
+            color: var(--color-rojo);
+            font-size: 1.3rem;
+            margin: 0;
+        }
+
+        .modal-menu-brand div p {
+            font-size: 0.85rem;
+            color: #777;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .cerrar-modal-menu {
+            font-size: 2.2rem;
+            cursor: pointer;
+            color: #888;
+            transition: var(--transicion);
+            line-height: 1;
+        }
+
+        .cerrar-modal-menu:hover {
+            color: var(--color-rojo);
+        }
+
+        /* Diseño de la Cuadrícula Limpia (Grid de Imágenes) */
+        .cuadricula-imagenes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .item-cuadricula {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 3px solid transparent;
+            transition: var(--transicion);
+        }
+
+        .item-cuadricula img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transicion);
+        }
+
+        .item-cuadricula:hover {
+            border-color: var(--color-rojo);
+            transform: scale(1.05);
+            box-shadow: 0 8px 18px rgba(166, 44, 44, 0.3);
+        }
+
+        .item-cuadricula:hover img {
+            transform: scale(1.1);
         }
 
         /* ================= SECCIÓN DE CONTACTO DIRECTO ================= */
@@ -593,6 +713,11 @@
                 bottom: 18px;
                 right: 18px;
             }
+
+            .cuadricula-imagenes {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 10px;
+            }
         }
     </style>
 </head>
@@ -616,7 +741,7 @@
                 <li><a href="#productos">Productos</a></li>
                 <li><a href="#contacto">Contacto</a></li>
                 <li class="nav-sociales">
-                    <a href="https://www.facebook.com/people/Bolillo-Tapatío/61590988693302/" target="_blank" class="fb" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.facebook.com/people/Bolillo-Tapat%C3%ADo/61590988693302/" target="_blank" class="fb" title="Facebook"><i class="fab fa-facebook"></i></a>
                     <a href="https://www.instagram.com/bolillotapatio.mx/" target="_blank" class="ig" title="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://wa.me/523921282854" target="_blank" class="wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     <a href="https://www.google.com/maps/place/C.+Fco+I.+Madero,+Ocotl%C3%A1n,+Jal./@20.3511491,-102.7728564,1531a,75y,278.23h,70.56t/data=!3m10!1e1!3m8!1sIMW2umd2ACfud4Vx4wPUXw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.clients6.google.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D19.44462707976544%26panoid%3DIMW2umd2ACfud4Vx4wPUXw%26yaw%3D278.2344450861898!7i16384!8i8192!9m2!1b1!2i46!4m15!1m8!3m7!1s0x842ed8c33fe734d1:0xc32432d708921b37!2sC.+Fco+I.+Madero,+Ocotl%C3%A1n,+Jal.!3b1!8m2!3d20.3545496!4d-102.7723454!16s%2Fg%2F1tf1c217!3m5!1s0x842ed8c33fe734d1:0xc32432d708921b37!8m2!3d20.3545496!4d-102.7723454!16s%2Fg%2F1tf1c217?entry=ttu" target="_blank" class="map" title="Google Maps"><i class="fas fa-map-marker-alt"></i></a>
@@ -651,7 +776,7 @@
             
             <!-- Producto 1 -->
             <div class="tarjeta-producto">
-                <div class="imagen-contenedor" onclick="abrirGaleríaProducto('fleiman')">
+                <div class="imagen-contenedor" onclick="abrirCuadriculaProducto('fleiman', 'Fleiman')">
                     <img src="ImgFlaiman.jpeg" alt="Fleiman">
                 </div>
                 <div class="info-producto">
@@ -662,7 +787,7 @@
 
             <!-- Producto 2 -->
             <div class="tarjeta-producto">
-                <div class="imagen-contenedor" onclick="abrirGaleríaProducto('telera')">
+                <div class="imagen-contenedor" onclick="abrirCuadriculaProducto('telera', 'Telera')">
                     <img src="ImgTelera.jpeg" alt="Telera">
                 </div>
                 <div class="info-producto">
@@ -673,7 +798,7 @@
 
             <!-- Producto 3 -->
             <div class="tarjeta-producto">
-                <div class="imagen-contenedor" onclick="abrirGaleríaProducto('bola')">
+                <div class="imagen-contenedor" onclick="abrirCuadriculaProducto('bola', 'Bola Dulce')">
                     <img src="ImgBolaDulce.jpeg" alt="Bola Dulce">
                 </div>
                 <div class="info-producto">
@@ -684,7 +809,7 @@
 
             <!-- Producto 4 -->
             <div class="tarjeta-producto">
-                <div class="imagen-contenedor" onclick="abrirGaleríaProducto('mancuerna')">
+                <div class="imagen-contenedor" onclick="abrirCuadriculaProducto('mancuerna', 'Mancuerna')">
                     <img src="ImgMancuerna.jpeg" alt="Mancuerna">
                 </div>
                 <div class="info-producto">
@@ -695,7 +820,7 @@
 
             <!-- Producto 5 -->
             <div class="tarjeta-producto">
-                <div class="imagen-contenedor" onclick="abrirGaleríaProducto('salado')">
+                <div class="imagen-contenedor" onclick="abrirCuadriculaProducto('salado', 'Bolillo Salado')">
                     <img src="ImgBolilloSalado.jpeg" alt="Bolillo Salado">
                 </div>
                 <div class="info-producto">
@@ -706,6 +831,26 @@
 
         </div>
     </section>
+
+    <!-- MODAL CUADRÍCULA DE IMÁGENES -->
+    <div class="modal-menu-overlay" id="modalCuadricula">
+        <div class="modal-menu-card">
+            <div class="modal-menu-header">
+                <div class="modal-menu-brand">
+                    <img src="LogoBolillo.jpeg" alt="Logo Bolillo Tapatío">
+                    <div>
+                        <h4>Bolillo Tapatío</h4>
+                        <p id="tituloProductoModal">Galería de Imágenes</p>
+                    </div>
+                </div>
+                <span class="cerrar-modal-menu" onclick="cerrarCuadricula()">&times;</span>
+            </div>
+            
+            <div class="cuadricula-imagenes" id="contenedorCuadricula">
+                <!-- Se generan solo las imágenes dinámicamente desde JS -->
+            </div>
+        </div>
+    </div>
 
     <!-- SECCIÓN DE CONTACTO Y REDES SOCIALES -->
     <section class="contacto-seccion" id="contacto">
@@ -720,7 +865,7 @@
                     <p>Pedidos y atención personalizada inmediata</p>
                 </a>
 
-                <a href="https://www.facebook.com/people/Bolillo-Tapatío/61590988693302/" target="_blank" class="card-contacto facebook">
+                <a href="https://www.facebook.com/people/Bolillo-Tapat%C3%ADo/61590988693302/" target="_blank" class="card-contacto facebook">
                     <i class="fab fa-facebook"></i>
                     <h4>Facebook</h4>
                     <p>Novedades, publicaciones y avisos</p>
@@ -756,7 +901,7 @@
         <p><i class="fas fa-location-dot"></i> Visítanos en C. Fco I. Madero, Ocotlán, Jalisco.</p>
         <p class="horarios"><i class="far fa-clock"></i> Horario: 8:00 AM – 3:00 PM | 5:00 PM – 9:00 PM</p>
         <div class="redes">
-            <a href="https://www.facebook.com/people/Bolillo-Tapatío/61590988693302/" target="_blank" title="Facebook">
+            <a href="https://www.facebook.com/people/Bolillo-Tapat%C3%ADo/61590988693302/" target="_blank" title="Facebook">
                 <i class="fab fa-facebook"></i>
             </a>
             <a href="https://www.instagram.com/bolillotapatio.mx/" target="_blank" title="Instagram">
@@ -791,38 +936,77 @@
         const galerias = {
             'fleiman': [
                 { src: 'ImgFlaiman.jpeg', titulo: 'Fleiman - Vista Principal' },
-                { src: 'ImgFlaiman2.jpeg', titulo: 'Fleiman - Detalle de Horneado' }
+                { src: 'ImgFlaiman2.jpeg', titulo: 'Fleiman - Detalle de Horneado' },
+                { src: 'ImgFlaiman3.jpeg', titulo: 'Fleiman - Recién Horneado' },
+                { src: 'ImgFlaiman4.jpeg', titulo: 'Fleiman - Vista de Cerca' },
+                { src: 'ImgFlaiman5.jpeg', titulo: 'Fleiman - Canasta de Pan' }
             ],
             'telera': [
                 { src: 'ImgTelera.jpeg', titulo: 'Telera - Tradicional' },
-                { src: 'ImgTelera2.jpeg', titulo: 'Telera - Recién Horneada' }
+                { src: 'ImgTelera2.jpeg', titulo: 'Telera - Recién Horneada' },
+                { src: 'ImgTelera3.jpeg', titulo: 'Telera - Vista Superior' },
+                { src: 'ImgTelera4.jpeg', titulo: 'Telera - Detalle' },
+                { src: 'ImgTelera5.jpeg', titulo: 'Telera - Textura Esponjosa' },
+                { src: 'ImgTelera6.jpeg', titulo: 'Telera - Corte Artesanal' }
             ],
             'bola': [
                 { src: 'ImgBolaDulce.jpeg', titulo: 'Bola Dulce - Vista 1' },
                 { src: 'ImgBolaDulce2.jpeg', titulo: 'Bola Dulce - Vista 2' },
                 { src: 'ImgBolaDulce3.jpeg', titulo: 'Bola Dulce - Vista 3' },
-                { src: 'ImgBolaDulce4.jpeg', titulo: 'Bola Dulce - Detalle de Azúcar' }
+                { src: 'ImgBolaDulce4.jpeg', titulo: 'Bola Dulce - Detalle de Azúcar' },
+                { src: 'ImgBolaDulce5.jpeg', titulo: 'Bola Dulce - Canasta Artesanal' },
+                { src: 'ImgBolaDulce6.jpeg', titulo: 'Bola Dulce - Horneado Dorado' },
+                { src: 'ImgBolaDulce7.jpeg', titulo: 'Bola Dulce - Lote Fresco' },
+                { src: 'ImgBolaDulce8.jpeg', titulo: 'Bola Dulce - Toque Tradicional' }
             ],
             'mancuerna': [
-                { src: 'ImgMancuerna.jpeg', titulo: 'Mancuerna Artesanal' }
+                { src: 'ImgMancuerna.jpeg', titulo: 'Mancuerna Artesanal' },
+                { src: 'ImgMancuerna2.jpeg', titulo: 'Mancuerna - Recién Horneada' },
+                { src: 'ImgMancuerna3.jpeg', titulo: 'Mancuerna - Corte Tradicional' }
             ],
             'salado': [
-                { src: 'ImgBolilloSalado.jpeg', titulo: 'Bolillo Salado Crujiente' }
+                { src: 'ImgBolilloSalado.jpeg', titulo: 'Bolillo Salado Crujiente' },
+                { src: 'ImgBolilloSalado2.jpeg', titulo: 'Bolillo Salado - Vista General' },
+                { src: 'ImgBolilloSalado3.jpeg', titulo: 'Bolillo Salado - Textura Dorada' },
+                { src: 'ImgBolilloSalado4.jpeg', titulo: 'Bolillo Salado - Lote Fresco' }
             ]
         };
 
         let galeriaActual = [];
         let indiceActual = 0;
 
-        function abrirGaleríaProducto(claveProducto) {
+        // Abrir Modal de Cuadrícula de Imágenes
+        function abrirCuadriculaProducto(claveProducto, nombreProducto) {
             galeriaActual = galerias[claveProducto] || [];
-            indiceActual = 0;
-            if (galeriaActual.length > 0) {
-                mostrarImagenModal();
-                document.getElementById('lightboxModal').classList.add('active');
-            }
+            document.getElementById('tituloProductoModal').innerText = 'Galería de ' + nombreProducto;
+            
+            const contenedor = document.getElementById('contenedorCuadricula');
+            contenedor.innerHTML = '';
+
+            galeriaActual.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'item-cuadricula';
+                div.onclick = () => seleccionarDesdeCuadricula(index);
+
+                div.innerHTML = `<img src="${item.src}" alt="${item.titulo}">`;
+                contenedor.appendChild(div);
+            });
+
+            document.getElementById('modalCuadricula').classList.add('active');
         }
 
+        function cerrarCuadricula() {
+            document.getElementById('modalCuadricula').classList.remove('active');
+        }
+
+        function seleccionarDesdeCuadricula(index) {
+            cerrarCuadricula();
+            indiceActual = index;
+            mostrarImagenModal();
+            document.getElementById('lightboxModal').classList.add('active');
+        }
+
+        // Visor Lightbox
         function mostrarImagenModal() {
             const item = galeriaActual[indiceActual];
             document.getElementById('lightboxImg').src = item.src;
@@ -872,5 +1056,7 @@
             observer.observe(card);
         });
     </script>
+</body>
+</html>
 </body>
 </html>
